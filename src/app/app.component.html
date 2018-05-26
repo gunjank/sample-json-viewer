@@ -1,0 +1,22 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar style="background-color: rgb(189, 201, 210)">
+  <span >JSON VIEWER AND PRETTY PRINT : <a href="https://www.linkedin.com/in/gunjankumar/">Gunjan Kumar</a> </span> &nbsp;&nbsp;&nbsp;
+  <mat-radio-group [(ngModel)]="renderer">
+    <mat-radio-button value="viewer">Json Viewer </mat-radio-button>&nbsp;
+    <mat-radio-button value="pretty">Json Pretty Print</mat-radio-button>
+  </mat-radio-group>
+</mat-toolbar>
+<div class="row">
+
+  <textarea style="min-height: 500px" class="col-sm-4  card-header" placeholder="keep your valid json here ..."
+  [ngModel]="jsonObjText" (ngModelChange)="textChange($event)">
+
+</textarea>
+
+  <ngx-json-viewer *ngIf="renderer==='viewer'" 
+  class="col-sm-8 card card-body" [json]="jsonObj"></ngx-json-viewer>
+
+  <div *ngIf="renderer==='pretty'" class="col-sm-8 ">
+
+    <pre [innerHtml]="jsonObj | prettyjson:3"></pre>
+  </div>
